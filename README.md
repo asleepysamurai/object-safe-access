@@ -1,42 +1,23 @@
-# keyword-immutable
-Babel transformation plugin to help with 'mutating' immutable objects
-
-# What we want to do:
+# object-safe-access
+Babel transformation plugin which provides safe access to object properties to prevent `cannot access 'x' of undefined' errors.
 
 Input
 
 ```js
-immutable let a = {d:{}};
-a.b = 1;
-a.d.e = 2;
-
-immutable let b = {};
-Object.assign(b, a);
+const a = b.c.d;
+e.f.g = 1;
+const b = c.d.e = 2;
 ```
 
 Output
 
 ```js
-let a = {d:{}};
-Object.defineProperty(a, '__$$immutable$$__', {
-    configurable: false,
-    enumerable: false,
-    writable: false,
-    value: {
-        isImmutable: true
-    }
-});
-
-a = mutateImmutable(a, 'b', 1);
-a = mutateImmutable(a, 'd.e', 2);
-
-let b = {};
-b = mutateImmutable(a);
+const a = ((b || {}).c || {}).d;
+e = e || {}, e.f = e.f || {}, e.f.g = 1;
+const b = (c = c || {}, c.d = c.d || {}, c.d.e = 2);
 ```
 
-Behaves like
-```js
-let a = {d: {}};
-a = Object.assign({},a, {b: 1});
-a = Object.assign({},a, {d: Object.assign({}, a.d, {e : 2})});
-```
+#### Warning:
+Will make your code-size very very very very very large. This was an experimental project to learn how to write a babel plugin. **NOT for production use.** That's why it's not even on NPM.
+
+
