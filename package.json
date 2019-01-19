@@ -1,10 +1,13 @@
 {
-  "name": "keyword-immutable",
-  "version": "0.0.1",
-  "description": "Babel plugin which helps with 'mutating' immutable objects",
-  "main": "src/index.js",
-  "repository": "git@github.com:asleepysamurai/keyword-immutable.git",
-  "author": "Balaganesh Damodaran <asleepysamurai@gmail.com>",
-  "license": "MIT",
-  "private": false
+    "name": "babel-plugin-object-safe-access",
+    "version": "0.0.1",
+    "description": "Babel plugin which provides safe access to object properties (i.e. does not throw 'Cannot access x of undefined' errors)",
+    "main": "src/index.js",
+    "repository": "git@github.com:asleepysamurai/object-safe-access.git",
+    "author": "Balaganesh Damodaran <asleepysamurai@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "devDependencies": {
+        "@babel/core": "^7.2.2"
+    }
 }
